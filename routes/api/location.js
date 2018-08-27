@@ -24,25 +24,6 @@ router.post('/create', (req, res) => {
     .catch(err => console.log(err));
 });
 
-//@route PATCH api/location
-//@desc Update Location
-//@access UNDEFINED
-router.patch('/', (req, res) => {
-  const location = {
-    latitude: req.body.lat,
-    longitude: req.body.long
-  };
-  Location.findOne({ uid: req.body.uid })
-    .then(result => {
-      if (result) {
-        result.set(location);
-        result.save().then(res.json({ message: 'Success' }));
-      } else {
-        return res.status(404).json({ message: 'User not found' });
-      }
-    })
-    .catch(err => console.log(err));
-});
 //@route POST api/location/near
 //@desc get nearest location userid
 //@access UNDEFINED
@@ -67,7 +48,7 @@ router.post('/near', (req, res) => {
 //@route PATCH api/location
 //@desc Update Location
 //@access UNDEFINED
-router.put('/test', (req, res) => {
+router.put('/add', (req, res) => {
   const location = {
     lat: req.body.lat,
     lon: req.body.long
